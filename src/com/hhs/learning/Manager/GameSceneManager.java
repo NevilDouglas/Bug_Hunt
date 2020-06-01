@@ -1,5 +1,6 @@
 package com.hhs.learning.Manager;
 
+import com.hhs.learning.Main.BugGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,8 +31,8 @@ public class GameSceneManager {
     private final static int GAME_PANE_HEIGHT = 700;
     private final static int CONTROL_PANE_HEIGHT = 200;
     private final static int SCREEN_PANE_HEIGHT = 500;
-    //    private final static double SCREEN_PANE_WIDTH = 500;
-//    private final static double SCREEN_PANE_HEIGHT = 500;
+//  private final static double SCREEN_PANE_WIDTH = 500;
+//  private final static double SCREEN_PANE_HEIGHT = 500;
     private final static int BUTTON_WIDTH = 80;
     private final static int BUTTON_HEIGHT = 50;
     private final static int TILE_SIZE = 50;
@@ -58,6 +59,7 @@ public class GameSceneManager {
     private Stage mainStage;
     private GridPane screenPane;
 //    private StackPane screenPane;
+//    private SceneManager sceneManager;
 
     private ImageView spider;
 
@@ -166,6 +168,7 @@ public class GameSceneManager {
         createLeftButton();
         createRightButton();
         createMoveButton();
+        createQuitButton();
     }
 
     private void createLeftButton() {
@@ -215,13 +218,28 @@ public class GameSceneManager {
 
     }
 
+    public Stage getMainStage() {
+        return mainStage;
+    }
+
+    private void createQuitButton() {
+        Button quitButton = new Button("Q");
+        addConsoleButtons(quitButton);
+        quitButton.setOnAction(event -> {
+            System.out.println("Ready to quit the game now!");
+            createGame(mainStage);
+
+        });
+
+    }
+
     private void createMoveButton() {
         Button moveButton = new Button("MOVE");
         addConsoleButtons(moveButton);
 
         moveButton.setOnAction(event -> {
             try {
-                if(spider.getTranslateX() <= PANE_WIDTH) {
+                if(spider.getTranslateX() <= PANE_WIDTH - 1) {
                     spider.setTranslateX(spider.getTranslateX() + 50);
                 }
             } catch (Exception e) {
@@ -243,6 +261,8 @@ public class GameSceneManager {
         this.mainStage.hide();
         this.gameStage.show();
     }
+
+
 
 
 //    public void update() {
