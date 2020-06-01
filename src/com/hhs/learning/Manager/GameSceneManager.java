@@ -1,5 +1,6 @@
 package com.hhs.learning.Manager;
 
+import com.hhs.learning.GameObject.Bug;
 import com.hhs.learning.Main.BugGame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -224,10 +225,12 @@ public class GameSceneManager {
 
     private void createQuitButton() {
         Button quitButton = new Button("Q");
+        SceneManager sceneManager = new SceneManager();
         addConsoleButtons(quitButton);
         quitButton.setOnAction(event -> {
             System.out.println("Ready to quit the game now!");
-            createGame(mainStage);
+            new SceneManager();
+            Stage stage = sceneManager.getMainStage();
 
         });
 
